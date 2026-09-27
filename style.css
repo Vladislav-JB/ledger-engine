@@ -39,7 +39,7 @@ code,.mono{font-family:var(--mono)}
 .nav a{text-decoration:none}
 .nav a:hover{color:var(--ink)}
 .hdr__r{margin-left:auto;display:flex;gap:10px;align-items:center}
-.gh{font:500 .8rem/1 var(--mono);color:var(--muted);text-decoration:none;display:flex;gap:6px;align-items:center}
+.gh{white-space:nowrap;font:500 .8rem/1 var(--mono);color:var(--muted);text-decoration:none;display:flex;gap:6px;align-items:center}
 .burger{display:none;background:none;border:1px solid var(--line2);border-radius:4px;width:40px;height:36px;color:var(--ink);cursor:pointer}
 
 /* hero */
@@ -179,7 +179,7 @@ code,.mono{font-family:var(--mono)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
-@media (max-width:1060px){
+@media (max-width:1240px){.gh{display:none}.nav{gap:16px}}@media (max-width:1060px){
   .nav{display:none}
   .burger{display:grid;place-items:center}
   .hdr.open .nav{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:64px;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 16px;margin:0;gap:0}

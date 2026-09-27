@@ -23,7 +23,7 @@
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
       e.target.classList.add('in'); if (e.target.contains(bars)) fillBars(); io.unobserve(e.target);
-    }), { rootMargin: '0px 0px -8% 0px' });
+    }), { rootMargin: '0px 0px -40px 0px' });
     $$('.rv').forEach(el => io.observe(el));
   } else { $$('.rv').forEach(el => el.classList.add('in')); fillBars(); }
 
@@ -134,7 +134,7 @@ ${K('// errors.Length == 0 – перевод проведён', 'c')}`
   function proj(p, ry, rx) {
     let x = p.x * Math.cos(ry) - p.z * Math.sin(ry), z = p.x * Math.sin(ry) + p.z * Math.cos(ry), y = p.y;
     const y2 = y * Math.cos(rx) - z * Math.sin(rx); z = y * Math.sin(rx) + z * Math.cos(rx); y = y2;
-    const s = Math.min(W, H) * .42, d = 4.2, k = d / (d + z);
+    const s = Math.min(W, H) * .27, d = 4.2, k = d / (d + z);
     return { x: W / 2 + x * s * k, y: H / 2 + y * s * k, k, z };
   }
   function cube(c, r, ry, rx, col, alpha) {
