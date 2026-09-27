@@ -1,31 +1,257 @@
 <!doctype html>
-<html lang="ru" data-stub>
+<html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Сайт финансового движка · демо готовится</title>
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="120">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tallyn Core · финансовый движок с гарантиями на уровне ядра</title>
+<meta name="description" content="Tallyn Core – движок учёта транзакций: двойная запись, строгая сериализуемость, 1 млн транзакций в секунду, детерминированное тестирование. Демо-сайт.">
+<meta property="og:title" content="Tallyn Core · финансовый движок">
+<meta property="og:description" content="Двойная запись, строгая сериализуемость и миллион транзакций в секунду.">
+<meta property="og:url" content="https://vladislav-jb.github.io/ledger-engine/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0C0F'/%3E%3Cpath d='M8 10h16M8 16h16M8 22h10' stroke='%237CF0B0' stroke-width='2.4' stroke-linecap='square'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;600&display=swap">
-<style>
-:root{--bg:#F6F3EE;--ink:#1F1E1C;--muted:#6B655C;--acc:#8A6737}
-@media (prefers-color-scheme:dark){:root{--bg:#161615;--ink:#EDE7DC;--muted:#A9A195;--acc:#C9A66B}}
-*{box-sizing:border-box}html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;display:grid;place-items:center;padding:24px}
-main{max-width:560px;text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center}
-.k{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);font-weight:600}
-h1{font:500 clamp(2rem,6vw,3rem)/1.1 "Cormorant Garamond",Georgia,serif;margin:0;text-wrap:balance}
-p{margin:0;color:var(--muted)}
-.bar{width:220px;height:3px;background:color-mix(in srgb,var(--acc) 20%,transparent);border-radius:3px;overflow:hidden}
-.bar i{display:block;height:100%;width:40%;background:var(--acc);animation:m 1.6s ease-in-out infinite}
-@keyframes m{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
-@media (prefers-reduced-motion:reduce){.bar i{animation:none;width:60%}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
 </head>
-<body><main>
-<div class="k">Демо-версия по вашему ТЗ</div>
-<h1>Сайт финансового движка</h1>
-<div class="bar" aria-hidden="true"><i></i></div>
-<p>Сайт сейчас собирается по вашему техническому заданию.<br>Будет готов сегодня к <b>15:00</b> – по этой же ссылке.</p>
-<p style="font-size:.85rem">Страница обновится сама.</p>
-</main></body></html>
+<body>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="#top"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 5h16M3 11h16M3 17h10" stroke="currentColor" stroke-width="2.2"/></svg>Tallyn<small>Core</small></a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#product">Продукт</a><a href="#arch">Архитектура</a><a href="#invariants">Инварианты</a><a href="#perf">Производительность</a><a href="#security">Безопасность</a><a href="#docs">Документация</a><a href="#blog">Блог</a>
+    </nav>
+    <div class="hdr__r">
+      <a class="gh" href="#docs" data-demo>★ GitHub</a>
+      <a class="btn" href="#docs">Документация</a>
+      <a class="btn btn--acc" href="#contact">Запросить демо</a>
+      <button class="burger" aria-label="Меню" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero__in">
+    <div class="hero__txt">
+      <span class="tag">Финансовый движок · v2.4</span>
+      <h1>Учёт денег, в котором ошибка невозможна по построению</h1>
+      <p class="lede">Tallyn Core – движок транзакций для платёжных систем, банков и маркетплейсов. Двойная запись, строгая сериализуемость и неизменяемый журнал встроены в ядро, а не в код поверх базы данных.</p>
+      <div class="hero__cta">
+        <a class="btn btn--acc" href="#docs">Начать за 5 минут <span class="k">→</span></a>
+        <a class="btn" href="#arch">Как это устроено</a>
+      </div>
+      <div class="install"><span>$</span><b>docker run</b> tallyn/core:2.4 --replicas=3</div>
+    </div>
+    <div class="hero__viz">
+      <canvas id="cube" aria-label="Трёхмерная схема: кластер из шести реплик обменивается транзакциями" role="img"></canvas>
+      <div class="viz-cap">cluster: <b>6 replicas</b> · quorum 4/6 · batch 8 190 tx</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="kpis">
+      <div class="kpi"><b>1<i>M</i></b><span>транзакций в секунду на кластере</span></div>
+      <div class="kpi"><b>&lt;4<i>ms</i></b><span>задержка p99 подтверждения</span></div>
+      <div class="kpi"><b>0</b><span>потерянных записей в 10⁹ симуляций сбоев</span></div>
+      <div class="kpi"><b>6</b><span>реплик, строгий кворум, без единой точки отказа</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="product">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">О продукте</span><h2>Бухгалтерия как база данных, а не как библиотека</h2></div>
+      <p>Обычно учёт строят поверх SQL: таблицы, триггеры, блокировки и надежда, что код не забудет вторую проводку. В Tallyn Core правила учёта проверяет ядро – каждую транзакцию, до записи на диск.</p>
+    </div>
+    <div class="grid3 rv">
+      <div class="cell"><span class="ic">DE</span><h3>Двойная запись в ядре</h3><p>Каждый перевод – это дебет одного счёта и кредит другого. Одностороннюю проводку движок просто не примет.</p><code>transfer(debit, credit, amount)</code></div>
+      <div class="cell"><span class="ic">SR</span><h3>Строгая сериализуемость</h3><p>Все реплики видят транзакции в одном порядке. Нет гонок, двойных списаний и «фантомных» балансов.</p><code>isolation = strict_serializable</code></div>
+      <div class="cell"><span class="ic">ID</span><h3>Идемпотентность из коробки</h3><p>Повтор запроса с тем же id вернёт тот же результат. Сетевые ретраи больше не создают дубли платежей.</p><code>id: u128 · unique forever</code></div>
+      <div class="cell"><span class="ic">2P</span><h3>Двухфазные переводы</h3><p>Холдирование средств: pending → posted или voided. Для эскроу, карточных авторизаций и маркетплейсов.</p><code>flags: PENDING | POST | VOID</code></div>
+      <div class="cell"><span class="ic">IM</span><h3>Неизменяемый журнал</h3><p>Записи нельзя изменить или удалить – только компенсировать новой проводкой. Аудит видит всю историю.</p><code>append_only = true</code></div>
+      <div class="cell"><span class="ic">LM</span><h3>Лимиты и овердрафт</h3><p>Запрет ухода в минус, кредитные лимиты и связанные переводы «всё или ничего» задаются флагами счёта.</p><code>debits ≤ credits</code></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="arch">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Архитектура</span><h2>Один бинарник, шесть реплик, ноль внешних зависимостей</h2></div>
+      <p>Консенсус, хранилище и логика учёта – в одном процессе. Нет отдельной СУБД, очередей и кэшей, которые могут разойтись между собой.</p>
+    </div>
+    <div class="arch rv">
+      <svg viewBox="0 0 960 330" role="img" aria-label="Схема архитектуры: клиенты и SDK отправляют батчи в кластер, лидер реплицирует журнал на пять реплик, каждая пишет в свой журнал и LSM-хранилище">
+        <rect class="box" x="10" y="115" width="150" height="100" rx="4"/><text class="t" x="28" y="145">Клиенты / SDK</text><text x="28" y="168">Go · Java · Python</text><text x="28" y="186">Node · .NET · Rust</text><text x="28" y="204">батч до 8 190 tx</text>
+        <path class="ln" d="M160 165h70"/><path class="flow" d="M160 165h70"/>
+        <rect class="box a" x="230" y="105" width="190" height="120" rx="4"/><text class="t" x="248" y="135">Лидер (primary)</text><text x="248" y="158">1. валидация инвариантов</text><text x="248" y="176">2. порядок: op-number</text><text x="248" y="194">3. prepare → реплики</text><text x="248" y="212">4. commit по кворуму</text>
+        <g><path class="ln" d="M420 140 C470 140 470 40 520 40"/><path class="flow" d="M420 140 C470 140 470 40 520 40"/>
+        <path class="ln" d="M420 155 C470 155 470 105 520 105"/><path class="flow" d="M420 155 C470 155 470 105 520 105"/>
+        <path class="ln" d="M420 170 C470 170 470 170 520 170"/><path class="flow" d="M420 170 C470 170 470 170 520 170"/>
+        <path class="ln" d="M420 185 C470 185 470 235 520 235"/><path class="flow" d="M420 185 C470 185 470 235 520 235"/>
+        <path class="ln" d="M420 200 C470 200 470 300 520 300"/><path class="flow" d="M420 200 C470 200 470 300 520 300"/></g>
+        <g><rect class="box" x="520" y="22" width="150" height="36" rx="4"/><text x="534" y="45">реплика 2 · ack</text>
+        <rect class="box" x="520" y="87" width="150" height="36" rx="4"/><text x="534" y="110">реплика 3 · ack</text>
+        <rect class="box" x="520" y="152" width="150" height="36" rx="4"/><text x="534" y="175">реплика 4 · ack</text>
+        <rect class="box" x="520" y="217" width="150" height="36" rx="4"/><text x="534" y="240">реплика 5 · …</text>
+        <rect class="box" x="520" y="282" width="150" height="36" rx="4"/><text x="534" y="305">реплика 6 · …</text></g>
+        <path class="ln" d="M670 170h60"/>
+        <rect class="box" x="730" y="80" width="220" height="180" rx="4"/><text class="t" x="748" y="110">Хранилище реплики</text>
+        <rect class="box" x="748" y="124" width="184" height="34" rx="3"/><text x="760" y="146">WAL · fsync · checksum</text>
+        <rect class="box" x="748" y="166" width="184" height="34" rx="3"/><text x="760" y="188">LSM: accounts / transfers</text>
+        <rect class="box" x="748" y="208" width="184" height="34" rx="3"/><text x="760" y="230">снапшоты · scrubbing</text>
+      </svg>
+    </div>
+    <div class="arch-notes rv">
+      <div><h3>Консенсус VSR</h3><p>Viewstamped Replication: лидер меняется за секунды, клиент повторяет запрос – результат тот же благодаря идемпотентности.</p></div>
+      <div><h3>Статическое выделение памяти</h3><p>Вся память выделяется при старте. Нет пауз сборщика мусора и внезапных OOM под пиковой нагрузкой.</p></div>
+      <div><h3>Своё хранилище</h3><p>Журнал упреждающей записи и LSM-дерево с контрольной суммой на каждом блоке. Порча диска обнаруживается и лечится с реплик.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tx">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Путь транзакции</span><h2>Что происходит за 3,8 миллисекунды</h2></div>
+      <p>Нажмите на шаг – справа подсветится, что в этот момент делает кластер.</p>
+    </div>
+    <div class="tx">
+      <ol class="tx__steps rv" id="steps">
+        <li class="on" data-l="1"><span class="n">01</span><div><h3>Клиент собирает батч</h3><p>SDK объединяет до 8 190 переводов в один запрос – сетевые накладные расходы делятся на тысячи операций.</p></div></li>
+        <li data-l="2"><span class="n">02</span><div><h3>Лидер назначает порядок</h3><p>Батч получает номер операции. С этого момента порядок транзакций один и тот же на всех репликах.</p></div></li>
+        <li data-l="3"><span class="n">03</span><div><h3>Проверка инвариантов</h3><p>Счета существуют, валюта совпадает, баланс не уходит в минус, id не повторяется. Ошибка – по конкретному переводу, остальные проходят.</p></div></li>
+        <li data-l="4"><span class="n">04</span><div><h3>Репликация и кворум</h3><p>Батч уходит на реплики. Коммит – когда 4 из 6 записали его в журнал с fsync.</p></div></li>
+        <li data-l="5"><span class="n">05</span><div><h3>Применение к балансам</h3><p>Дебеты и кредиты применяются атомарно. Журнал неизменяем, балансы выводятся из него детерминированно.</p></div></li>
+        <li data-l="6"><span class="n">06</span><div><h3>Ответ клиенту</h3><p>Клиент получает результат по каждому переводу. Повтор запроса вернёт тот же ответ, без повторного списания.</p></div></li>
+      </ol>
+      <div class="term rv">
+        <div class="term__bar"><i></i><i></i><i></i><span>replica-1 · trace</span></div>
+<pre id="trace"><span data-l="1"><span class="c">14:02:11.0412</span> <span class="b">client</span>   batch.size=8190 bytes=1.05MB</span><span data-l="2"><span class="c">14:02:11.0419</span> <span class="b">primary</span>  op=48213377 view=12 assigned</span><span data-l="3"><span class="c">14:02:11.0431</span> <span class="b">validate</span> ok=8188 <span class="y">err=2</span></span><span data-l="3"><span class="c">            </span>          #4410 <span class="y">exceeds_credits</span></span><span data-l="3"><span class="c">            </span>          #7002 <span class="y">id_already_exists</span></span><span data-l="4"><span class="c">14:02:11.0447</span> <span class="b">prepare</span>  → r2 r3 r4 r5 r6</span><span data-l="4"><span class="c">14:02:11.0462</span> <span class="b">quorum</span>   <span class="g">4/6 fsync ✓</span> commit=48213377</span><span data-l="5"><span class="c">14:02:11.0471</span> <span class="b">apply</span>    debits=Σ credits=Σ <span class="g">balanced ✓</span></span><span data-l="6"><span class="c">14:02:11.0480</span> <span class="b">reply</span>    8188 posted · 2 rejected · <span class="g">3.8ms</span></span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="invariants">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Инварианты</span><h2>Правила, которые не нарушаются никогда</h2></div>
+      <p>Каждый инвариант проверяется в ядре и в симуляторе сбоев. Если хоть один нарушен – это баг уровня «стоп релиз».</p>
+    </div>
+    <div class="inv rv">
+      <div><span class="id">INV-01</span><h3>Баланс всей системы</h3><code>Σ debits_posted = Σ credits_posted</code><p>Деньги не появляются и не исчезают – только перемещаются между счетами.</p></div>
+      <div><span class="id">INV-02</span><h3>Уникальность</h3><code>∀ t: id(t) уникален навсегда</code><p>Повтор с тем же id – не новый перевод, а тот же ответ.</p></div>
+      <div><span class="id">INV-03</span><h3>Неизменяемость</h3><code>transfer ⇒ append-only</code><p>Проведённый перевод нельзя изменить или удалить, только компенсировать.</p></div>
+      <div><span class="id">INV-04</span><h3>Лимиты счёта</h3><code>debits ≤ credits  если flag=no_overdraft</code><p>Счёт без овердрафта не уйдёт в минус даже при тысяче параллельных списаний.</p></div>
+      <div><span class="id">INV-05</span><h3>Двухфазность</h3><code>pending → posted | voided, ровно один раз</code><p>Захолдированные средства либо списываются, либо возвращаются – третьего нет.</p></div>
+      <div><span class="id">INV-06</span><h3>Монотонное время</h3><code>timestamp(tₙ₊₁) &gt; timestamp(tₙ)</code><p>Кластер назначает время сам – порядок событий однозначен для аудита.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="perf">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Производительность</span><h2>В двадцать раз быстрее учёта поверх SQL</h2></div>
+      <p>Батчинг, статическая память и своё хранилище убирают блокировки строк – главное узкое место классических систем учёта.</p>
+    </div>
+    <div class="perf">
+      <div class="chart rv">
+        <h3>Пропускная способность</h3><div class="sub">переводов/с · 10 000 счетов · 30% «горячих»</div>
+        <div class="bars" id="bars">
+          <div class="bar us" data-v="100"><span>Tallyn Core</span><span class="trk"><span class="fill"></span></span><span class="v">1 004 000</span></div>
+          <div class="bar" data-v="4.2"><span>PostgreSQL</span><span class="trk"><span class="fill"></span></span><span class="v">42 100</span></div>
+          <div class="bar" data-v="2.9"><span>MySQL</span><span class="trk"><span class="fill"></span></span><span class="v">29 300</span></div>
+          <div class="bar" data-v="1.1"><span>Учёт на Redis</span><span class="trk"><span class="fill"></span></span><span class="v">11 400</span></div>
+        </div>
+        <p class="note">Демо-данные для макета. На сайте заказчика – результаты его бенчмарка с методикой.</p>
+      </div>
+      <div class="chart lat rv">
+        <h3>Задержка под нагрузкой</h3><div class="sub">мс · от 100 тыс. до 1 млн переводов/с</div>
+        <svg viewBox="0 0 520 220" role="img" aria-label="График задержки: p50 около 1 мс, p99 растёт с 2 до 3,8 мс при росте нагрузки до миллиона переводов в секунду">
+          <g class="gl"><line x1="40" y1="20" x2="510" y2="20"/><line x1="40" y1="70" x2="510" y2="70"/><line x1="40" y1="120" x2="510" y2="120"/><line x1="40" y1="170" x2="510" y2="170"/></g>
+          <text x="8" y="24">4</text><text x="8" y="74">3</text><text x="8" y="124">2</text><text x="8" y="174">1</text>
+          <text x="40" y="206">100k</text><text x="255" y="206">500k</text><text x="480" y="206">1M</text>
+          <polyline class="p50" points="40,175 100,174 160,172 220,171 280,170 340,168 400,166 460,164 510,162"/>
+          <polyline class="p99" points="40,120 100,116 160,110 220,104 280,96 340,84 400,70 460,48 510,30"/>
+        </svg>
+        <div class="legend"><span><i style="background:var(--acc)"></i>p50</span><span><i style="background:var(--acc2)"></i>p99</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="security">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Безопасность и надёжность</span><h2>Мы ломаем кластер миллиард раз, чтобы он не сломался у вас</h2></div>
+      <p>Детерминированный симулятор прогоняет годы работы за часы: обрывы сети, порча дисков, падения узлов и сдвиги часов – одновременно.</p>
+    </div>
+    <div class="sec4 rv">
+      <div><b>10⁹</b><h3>Симуляций сбоев</h3><p>Каждый коммит проходит детерминированное тестирование. Любой найденный баг воспроизводится по seed.</p></div>
+      <div><b>128-bit</b><h3>Контрольные суммы</h3><p>На каждом блоке журнала и хранилища. Тихая порча диска обнаруживается и восстанавливается с реплик.</p></div>
+      <div><b>mTLS</b><h3>Шифрование</h3><p>Трафик между клиентами и репликами – по взаимному TLS, данные на диске – AES-256.</p></div>
+      <div><b>100%</b><h3>Аудируемость</h3><p>Журнал неизменяем: для любого баланса можно показать все проводки, из которых он сложился.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="docs">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Документация и SDK</span><h2>Первый перевод – за 5 минут</h2></div>
+      <p>Официальные клиенты для шести языков с одинаковым API. Батчинг, ретраи и идемпотентность уже внутри.</p>
+    </div>
+    <div class="docs">
+      <div class="rv">
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" aria-selected="true" data-k="go">Go</button><button role="tab" aria-selected="false" data-k="py">Python</button><button role="tab" aria-selected="false" data-k="node">Node.js</button><button role="tab" aria-selected="false" data-k="java">Java</button><button role="tab" aria-selected="false" data-k="net">.NET</button>
+        </div>
+        <div class="code"><pre id="code"></pre></div>
+      </div>
+      <div class="doclinks rv">
+        <a href="#docs" data-demo><b>Быстрый старт</b><span>Кластер в Docker и первый перевод</span><em>→</em></a>
+        <a href="#docs" data-demo><b>Справочник API</b><span>Счета, переводы, флаги, коды ошибок</span><em>→</em></a>
+        <a href="#docs" data-demo><b>Моделирование учёта</b><span>Эскроу, комиссии, мультивалютность</span><em>→</em></a>
+        <a href="#docs" data-demo><b>Эксплуатация</b><span>Развёртывание, мониторинг, обновления</span><em>→</em></a>
+        <a href="#docs" data-demo><b>Миграция с SQL</b><span>Перенос балансов без простоя</span><em>→</em></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="blog">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <div><span class="tag">Инженерный блог</span><h2>Как мы строим движок</h2></div>
+      <p>Разборы архитектуры, бенчмарки с методикой и истории багов, которые нашёл симулятор.</p>
+    </div>
+    <div class="posts rv">
+      <a class="post" href="#blog" data-demo><span class="meta">12 сен 2026 · 9 мин</span><h3>Почему мы отказались от SQL для учёта денег</h3><p>Где блокировки строк упираются в потолок и что делать с «горячими» счетами.</p><span class="more">Читать →</span></a>
+      <a class="post" href="#blog" data-demo><span class="meta">28 авг 2026 · 14 мин</span><h3>Миллиард сбоев в час: как устроен наш симулятор</h3><p>Детерминированное тестирование распределённой системы – от seed до воспроизводимого бага.</p><span class="more">Читать →</span></a>
+      <a class="post" href="#blog" data-demo><span class="meta">03 авг 2026 · 7 мин</span><h3>Двухфазные переводы для маркетплейсов</h3><p>Холдирование, частичное списание и возвраты без ручной сверки.</p><span class="more">Читать →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta__box rv">
+      <div><span class="tag">Внедрение</span><h2 style="margin-top:14px">Покажем движок на ваших данных</h2><p>Проведём технический созвон, разберём вашу модель учёта и нагрузку, поднимем тестовый кластер под ваш сценарий.</p></div>
+      <a class="btn btn--acc" href="#contact" data-demo="Демо-сайт: здесь будет форма или почта заказчика.">Запросить демо <span class="k">→</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <span>© 2026 Tallyn · демо-сайт, название и цифры условные</span>
+    <span class="mono">status: all systems operational</span>
+  </div>
+</footer>
+<script src="app.js?v=1"></script>
+</body>
+</html>
