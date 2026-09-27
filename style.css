@@ -194,7 +194,7 @@ code,.mono{font-family:var(--mono)}
   .kpis{grid-template-columns:1fr 1fr}
   .kpi:nth-child(2){border-right:0}
   .kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}
-  .sec__head,.tx,.perf,.docs{grid-template-columns:1fr}
+  .sec__head,.tx,.perf,.docs{grid-template-columns:minmax(0,1fr)}
   .sec__head{gap:14px}
   .grid3,.posts,.arch-notes{grid-template-columns:1fr}
   .inv{grid-template-columns:minmax(0,1fr)}
@@ -215,4 +215,4 @@ code,.mono{font-family:var(--mono)}
   .arch{padding:16px}
 }
 
-@media (max-width:1500px){.gh,.hdr__r .btn:not(.btn--acc){display:none}}
+.gh,.hdr__r .btn:not(.btn--acc){display:none}
