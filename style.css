@@ -197,7 +197,7 @@ code,.mono{font-family:var(--mono)}
   .sec__head,.tx,.perf,.docs{grid-template-columns:1fr}
   .sec__head{gap:14px}
   .grid3,.posts,.arch-notes{grid-template-columns:1fr}
-  .inv{grid-template-columns:1fr}
+  .inv{grid-template-columns:minmax(0,1fr)}
   .term{position:static}
   .cta__box{grid-template-columns:1fr;padding:32px}
   .sec{padding:72px 0}
@@ -210,7 +210,9 @@ code,.mono{font-family:var(--mono)}
   .kpi{padding:18px 16px}
   .kpi b{font-size:1.35rem}
   .cell,.inv div{padding:20px}
-  .inv div{grid-template-columns:1fr}
+  .inv div{grid-template-columns:minmax(0,1fr)}.inv code{white-space:normal;overflow-wrap:anywhere}.hdr__r .btn--acc{padding:10px 12px;font-size:.84rem}.logo small{display:none}
   .inv .id{grid-row:auto}
   .arch{padding:16px}
 }
+
+@media (max-width:1500px){.gh,.hdr__r .btn:not(.btn--acc){display:none}}
