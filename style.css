@@ -223,3 +223,4 @@ code,.mono{font-family:var(--mono)}
   .ftr .foot__made a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: .18em; }
   .ftr .foot__made img { display: inline-block; width: 40px; height: 52px; max-width: none; margin-left: .35em; vertical-align: -7px; }
   .ftr__in { align-items: center; }
+  .ftr__demo { flex-basis: 100%; }
